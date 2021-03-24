@@ -4,3 +4,5 @@
   <%= link_to "Register As A User", new_user_path %>
   <%= link_to "I already have an account", login_path %>
 <% end %>
+
+<p>My secret is: <%= cookies.encrypted[:super_secret] %>

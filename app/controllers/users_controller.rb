@@ -16,26 +16,6 @@ class UsersController < ApplicationController
     redirect_to root_path
   end
 
-  def login_form
-
-  end
-
-  def login
-    user = User.find_by(email: params[:email])
-    if user && user.authenticate(params[:password])
-      session[:user_id] = user.id
-      flash[:message] = "Welcome #{user.email}!"
-      redirect_to root_path
-    else
-      flash[:message] = "email or password is incorrect"
-      render :login_form
-    end
-  end
-
-  def log_out
-    session[:user_id] = nil
-  end
-
   private
 
   def user_params

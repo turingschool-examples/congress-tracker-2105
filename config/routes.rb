@@ -4,11 +4,8 @@ Rails.application.routes.draw do
   resources :users, only: [:new, :create]
   get '/profile', to: "users#show"
 
-  get '/login', to: "users#login_form"
-  post '/login', to: "users#login"
-
-  get '/login', to: "sessions#new"
-  post '/login', to: "sessions#create"
-  delete '/logout', to: 'sessions#destroy'
-  get '/logout', to: 'sessions#destroy'
+  get '/login', to: "session#new"
+  post '/login', to: "session#create"
+  delete '/logout', to: 'session#destroy'
+  get '/logout', to: 'session#destroy'
 end
