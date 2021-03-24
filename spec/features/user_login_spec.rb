@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe "Loggin In" do
+describe "Logging In" do
   it "with valid credentials" do
     user = User.create(email: 'alex@email.com', password: 'password')
     visit root_path
@@ -37,5 +37,31 @@ describe "Loggin In" do
     expect(current_path).to eq(login_path)
     # and I see a welcome message with my username
     expect(page).to have_content("email or password is incorrect")
+  end
+
+  it 'allows an admin user to log in' do
+    user = User.create(role: 1, email: 'alex@email.com', password: 'password')
+    visit login_path
+    fill_in :email, with: user.email
+    fill_in :password, with: user.password
+    click_button 'Log In'
+
+    expect(current_path).to eq(admin_dashboard_path)
+    expect(page).to have_content('admin-only dashboard')
+  end
+
+  it 'allows a user to log out' do
+    user = User.create(email: 'alex@email.com', password: 'password')
+    visit login_path
+    fill_in :email, with: user.email
+    fill_in :password, with: user.password
+    click_button 'Log In'
+
+    expect(current_path).to eq(root_path)
+    expect(page).to have_link('Log Out')
+    click_link 'Log Out'
+
+    expect(current_path).to eq(root_path)
+    expect(page).to have_content('You have been logged out')
   end
 end
