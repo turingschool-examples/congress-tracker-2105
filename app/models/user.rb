@@ -3,4 +3,7 @@ class User < ApplicationRecord
     # validates_presence_of :password, require: true
 
     has_secure_password
+
+    enum role: ["default", "admin"]
+
 end
