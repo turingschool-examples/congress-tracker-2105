@@ -7,8 +7,7 @@ class UsersController <ApplicationController
         user = user_params
         user[:username] = user[:username].downcase
         new_user = User.create(user)
-        if new_user.save
-            # require 'pry';binding.pry
+        if new_user && new_user.save
             flash[:success] = "Welcome, #{new_user.username}!"
             redirect_to root_path
         end 
