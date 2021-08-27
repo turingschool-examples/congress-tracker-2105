@@ -1,0 +1,8 @@
+<%= form_with url: search_path, local: true do |form| %>
+  <%= form.label :search, 'Search For Senators By Last Name:' %>
+  <%= form.text_field :search %>
+  <%= form.submit 'Search' %>
+<% end %>
+<% if @member %>
+  <h5>Senator <%= @member[:first_name].concat(" ").concat(@member[:last_name]) %> was found! Their twitter is: <%= @member[:twitter_account] %></h5>
+<% end %>
