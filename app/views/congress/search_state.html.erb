@@ -1,0 +1,11 @@
+<% if @house_members %>
+  <h1><%=@house_members.size%> Results </h1>
+  <% @house_members.each do |house_member| %>
+    <ul class="house_members">
+      <li class="name"><%= house_member[:name]%></li>
+      <li class="role"><%= house_member[:role]%></li>
+      <li class="party"><%= house_member[:party]%></li>
+      <li class="district"><%= house_member[:district]%></li>
+    </ul>
+  <% end %>
+<% end %>
