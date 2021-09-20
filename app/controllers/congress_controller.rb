@@ -4,6 +4,7 @@ class CongressController < ApplicationController
   end
 
   def search_state
+    @state = params[:state]
     @house_members = CongressFacade.find_all_house_members_by_state(params[:state])
   end
 end
